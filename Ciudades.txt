@@ -1,0 +1,61 @@
+456;96;Berlin
+456;274;Munich
+456;312;Dresde
+456;100;Dortmund
+12;1234;Salzburgo
+12;32;VienaCity
+10;789;Gemenos
+10;234;Marsella
+10;234;Lyon
+20;678;Praga
+20;650;Ostrava
+20;321;Brno
+15;145;Barcelona
+15;111;Madrid
+37;765;Moscu
+37;654;SanPetesburgo
+21;895;Amsterdan
+21;643;Haarlem
+77;423;Odense
+77;333;Copenhage
+22;22;CiudadAustria
+33;354;CiudadBelgica
+45;532;CiudadBulgaria
+54;623;CiudadChipre
+543;980;CiudadCroacia
+34;241;CiudadEslovaquia
+212;214;CiudadEslovenia
+43;123;CiudadEstonia
+431;8908;CiudadFinlandia 
+12;341;CiudadGrecia
+543;1234;CiudadHungria
+67;678;CiudadIrlanda
+89;1222;CiudadItalia
+77;643;CiudadLituania
+65;986;CiudadLuxemburgo
+98;789;CiudadMalta
+123;1212;CiudadPaises Bajos
+55;7878;CiudadPortugal
+37;145;Ciudad Republica Checa
+100;1232;CiudadSuecia.
+22;223;2CiudadAustria
+33;3542;2CiudadBelgica
+45;5322;2CiudadBulgaria
+54;6232;2CiudadChipre
+543;980;2CiudadCroacia
+34;2412;2CiudadEslovaquia
+212;2124;2CiudadEslovenia
+43;1232;2CiudadEstonia
+431;89082;2CiudadFinlandia 
+12;3412;2CiudadGrecia
+543;12342;2CiudadHungria
+67;6782;2CiudadIrlanda
+89;1222;2CiudadItalia
+77;6432;2CiudadLituania
+65;9862;2CiudadLuxemburgo
+98;7892;2CiudadMalta
+123;12122;2CiudadPaises Bajos
+55;78782;2CiudadPortugal
+37;1452;2Ciudad Republica Checa
+100;12322;2CiudadSuecia.
+23;12122;2CiudadPaises Bajos

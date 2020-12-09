@@ -1,0 +1,32 @@
+12;Viena
+10;Francia
+20;Republica Checa
+456;Alemania
+10;Polonia
+15;Espana
+37;Rusia
+21;Holanda
+77;Dinamarca
+22;Austria
+33;Belgica
+45;Bulgaria
+54;Chipre
+543;Croacia
+34;Eslovaquia
+212;Eslovenia
+43;Estonia
+431;Finlandia 
+12;Grecia
+543;Hungria
+67;Irlanda
+89;Italia
+20;Letonia
+77;Lituania
+65;Luxemburgo
+98;Malta
+123;Paises Bajos
+55;Portugal
+20;Reino Unido
+37;Republica Checa
+10;Rumanía
+100;Suecia.

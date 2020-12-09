@@ -1,0 +1,5 @@
+12;1234;11173117;Alix Spurden;1
+10;789;29090410;Chris Cerro;1
+20;678;02740136;Birdie Upstell;0
+77;333;214213;Luis Carlos;1
+15;145;22;Gabriel;0

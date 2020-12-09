@@ -1,0 +1,6 @@
+01;Interrail
+02;Eurail
+03;Panoramico
+04;Nocturno
+04;Nocturno
+03;Panoramico
