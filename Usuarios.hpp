@@ -307,7 +307,7 @@ bool NodoUsuario::ModEstMigratorio(int k, int estMigratorio) {
     i++;
 
   if (keys[i] == k){
-  	estado[i] = estMigratorio;
+  	estado[i] = 1;
   	return true;
   }
   if (leaf == true){
