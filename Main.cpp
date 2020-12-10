@@ -46,14 +46,13 @@ int main(){
 	
 	BTree admins(3);
 	CargarAdmin(admins);//Carga admin
-	cout<<"Antes: "<<endl;
-	admins.traverse();
 	ArbolUsuario usuarios(5);
 	CargarUsuarios(usuarios,paises);//Carga usuarios
-	cout<<"Despues: "<<endl;
-	admins.EliminarB(923);
+	cout<<"Antes: "<<endl;
 	admins.traverse();
-	
+	cout<<"Despues: "<<endl;
+	admins.EliminarB(123);
+	admins.traverse();
 	/*
 	listaBoleteria boletos;
 	listaUsuario listaUsuarios;

@@ -27,7 +27,7 @@ class TreeNode {
   TreeNode *search(int k);
   bool ExisteAdmin(int k); 
 
-  int findKey(int k); //listo
+  int findKey(int k); 
 
   void remove(int k); 
 
@@ -267,9 +267,10 @@ void TreeNode::remove(int k) {
 void TreeNode::removeFromLeaf (int idx) { 
   
     // Move all the keys after the idx-th pos one place backward 
-    for (int i=idx+1; i<n; ++i) 
-        keys[i-1] = keys[i]; 
-  
+    for (int i=idx+1; i<n; ++i){
+    	keys[i-1] = keys[i];
+		nombres[i-1] = nombres[i]; 
+	} 
     // Reduce the count of keys 
     n--; 
   
@@ -287,7 +288,8 @@ void TreeNode::removeFromNonLeaf(int idx) {
     if (C[idx]->n >= t) 
     { 
         int pred = getPred(idx); 
-        keys[idx] = pred; 
+        keys[idx] = pred;
+		nombres[idx] = pred; 
         C[idx]->remove(pred); 
     } 
   
@@ -299,7 +301,8 @@ void TreeNode::removeFromNonLeaf(int idx) {
     else if  (C[idx+1]->n >= t) 
     { 
         int succ = getSucc(idx); 
-        keys[idx] = succ; 
+        keys[idx] = succ;
+		nombres[idx] = succ; 
         C[idx+1]->remove(succ); 
     } 
   
@@ -371,8 +374,11 @@ void TreeNode::borrowFromPrev(int idx) {
     // sibling one key and child gains one key 
   
     // Moving all key in C[idx] one step ahead 
-    for (int i=child->n-1; i>=0; --i) 
-        child->keys[i+1] = child->keys[i]; 
+    for (int i=child->n-1; i>=0; --i){
+    	child->keys[i+1] = child->keys[i]; 
+        child->nombres[i+1] = child->nombres[i];
+	} 
+        
   
     // If C[idx] is not a leaf, move all its child pointers one step ahead 
     if (!child->leaf) 
@@ -382,7 +388,8 @@ void TreeNode::borrowFromPrev(int idx) {
     } 
   
     // Setting child's first key equal to keys[idx-1] from the current node 
-    child->keys[0] = keys[idx-1]; 
+    child->keys[0] = keys[idx-1];
+	child->nombres[0] = nombres[idx-1]; 
   
     // Moving sibling's last child as C[idx]'s first child 
     if(!child->leaf) 
@@ -390,8 +397,8 @@ void TreeNode::borrowFromPrev(int idx) {
   
     // Moving the key from the sibling to the parent 
     // This reduces the number of keys in the sibling 
-    keys[idx-1] = sibling->keys[sibling->n-1]; 
-  
+    keys[idx-1] = sibling->keys[sibling->n-1];
+	nombres[idx-1] = sibling->nombres[sibling->n-1]; 
     child->n += 1; 
     sibling->n -= 1; 
   
@@ -404,7 +411,8 @@ void TreeNode::borrowFromNext(int idx) {
     TreeNode *sibling=C[idx+1]; 
   
     // keys[idx] is inserted as the last key in C[idx] 
-    child->keys[(child->n)] = keys[idx]; 
+    child->keys[(child->n)] = keys[idx];
+	child->nombres[(child->n)]=nombres[idx]; 
   
     // Sibling's first child is inserted as the last child 
     // into C[idx] 
@@ -412,12 +420,14 @@ void TreeNode::borrowFromNext(int idx) {
         child->C[(child->n)+1] = sibling->C[0]; 
   
     //The first key from sibling is inserted into keys[idx] 
-    keys[idx] = sibling->keys[0]; 
+    keys[idx] = sibling->keys[0];
+	nombres[idx] = sibling->nombres[0]; 
   
     // Moving all keys in sibling one step behind 
-    for (int i=1; i<sibling->n; ++i) 
-        sibling->keys[i-1] = sibling->keys[i]; 
-  
+    for (int i=1; i<sibling->n; ++i){
+    	sibling->keys[i-1] = sibling->keys[i];
+		sibling->nombres[i-1] = sibling->nombres[i];
+	} 
     // Moving the child pointers one step behind 
     if (!sibling->leaf) 
     { 
@@ -440,11 +450,13 @@ void TreeNode::merge(int idx){
     // Pulling a key from the current node and inserting it into (t-1)th 
     // position of C[idx] 
     child->keys[t-1] = keys[idx]; 
-  
+  	child->nombres[t-1] = nombres[idx]; 
     // Copying the keys from C[idx+1] to C[idx] at the end 
-    for (int i=0; i<sibling->n; ++i) 
-        child->keys[i+t] = sibling->keys[i]; 
-  
+    for (int i=0; i<sibling->n; ++i){
+		child->keys[i+t] = sibling->keys[i]; 
+		child->nombres[i+t] = sibling->nombres[i]; 
+	} 
+  		
     // Copying the child pointers from C[idx+1] to C[idx] 
     if (!child->leaf) 
     { 
@@ -454,9 +466,11 @@ void TreeNode::merge(int idx){
   
     // Moving all keys after idx in the current node one step before - 
     // to fill the gap created by moving keys[idx] to C[idx] 
-    for (int i=idx+1; i<n; ++i) 
-        keys[i-1] = keys[i]; 
-  
+    for (int i=idx+1; i<n; ++i){
+    	keys[i-1] = keys[i]; 
+    	nombres[i-1] = nombres[i]; 
+	} 
+        
     // Moving the child pointers after (idx+1) in the current node one 
     // step before 
     for (int i=idx+2; i<=n; ++i) 
