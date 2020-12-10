@@ -324,6 +324,48 @@ pNodoBinarioRN DevolverConexion(pNodoBinarioRN R,int codConexion){
 	 }
 }
 
+bool ExisteConexionG3(pNodoBinarioRN Rcx, int &codConexion,bool &flag){
+	if(Rcx==NULL){
+    return flag;
+	}
+	else{
+	
+	    ExisteConexionG3(Rcx->Hizq,codConexion, flag);
+	    if (codConexion==Rcx->valor){
+	        flag=true;
+	    }
+	    ExisteConexionG3(Rcx->Hder,codConexion, flag);
+	}
+	return flag;
+}
+
+bool ExisteConexionG2(NodoAVL *ciudades, int &codConexion,bool &flag){ 
+    if(ciudades==NULL){
+    	return flag;
+	}
+	else{
+	
+	    ExisteConexionG2(ciudades->izquierda,codConexion, flag);
+	    ExisteConexionG3(ciudades->conexiones.raiz,codConexion,flag);
+	    ExisteConexionG2(ciudades->derecha,codConexion, flag);
+	}
+	return flag;
+}
+
+bool ExisteConexionG(pNodoBinario paises,int &codConexion, bool &flag){
+    if(paises==NULL){
+    	return flag;
+	}
+	else{
+	
+	    ExisteConexionG(paises->Hizq,codConexion, flag);
+	    ExisteConexionG2(paises->ciudad,codConexion,flag);
+	    ExisteConexionG(paises->Hder,codConexion, flag);
+	}
+	return flag;
+}
+
+
 //Cargar Conexiones
 void CargarConexiones(pNodoBinario &paises){
 	ifstream archivo;
@@ -342,12 +384,14 @@ void CargarConexiones(pNodoBinario &paises){
 			string ConexionPais = Conexion.substr(posPC3 + 1, Conexion.length());int posPC4 = ConexionPais.find(";");int codPais2 = atoi((ConexionPais.substr(0, posPC4).c_str()));
 			string ConexionCiudad = ConexionPais.substr(posPC4 + 1, ConexionPais.length());int posPC5 = ConexionCiudad.find(";");int codCiudad2 = atoi((ConexionCiudad.substr(0, posPC5).c_str()));
 			string Tiempo = ConexionCiudad.substr(posPC5 + 1, ConexionCiudad.length());int posPC6 = Tiempo.find(";");int codTiempo = atoi((Tiempo.substr(0, posPC6).c_str()));
+			bool flag = false;
 			if((ExistePais(paises,codPais))&&(ExistePais(paises,codPais2))){
 				pNodoBinario paisAux = DevolverPais(paises,codPais);
 				pNodoBinario paisAux2 = DevolverPais(paises,codPais2);
 				if((ExisteCiudad(paisAux->ciudad,codCiudad))&&(ExisteCiudad(paisAux2->ciudad,codCiudad2))){
 					NodoAVL *ciudadAux = DevolverCiudad(paisAux->ciudad,codCiudad);
-					if(!ExisteConexion(ciudadAux->conexiones.raiz,codConexionAux)){
+					if(!ExisteConexionG(paises,codConexionAux, flag)){
+						flag = false;
 						ciudadAux->conexiones.insercionRN(codConexionAux,codPais2,codCiudad2,codTiempo);
 					}
 					else{

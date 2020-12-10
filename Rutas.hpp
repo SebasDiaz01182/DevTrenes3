@@ -243,46 +243,6 @@ void listaC::DevolverRuta(int codRuta, pnodoCir &ruta){
 		ruta = aux;
 	}
 }
-bool ExisteConexionG3(pNodoBinarioRN Rcx, int &codConexion,bool &flag){
-	if(Rcx==NULL){
-    return flag;
-	}
-	else{
-	
-	    ExisteConexionG3(Rcx->Hizq,codConexion, flag);
-	    if (codConexion==Rcx->valor){
-	        flag=true;
-	    }
-	    ExisteConexionG3(Rcx->Hder,codConexion, flag);
-	}
-	return flag;
-}
-
-bool ExisteConexionG2(NodoAVL *ciudades, int &codConexion,bool &flag){ 
-    if(ciudades==NULL){
-    	return flag;
-	}
-	else{
-	
-	    ExisteConexionG2(ciudades->izquierda,codConexion, flag);
-	    ExisteConexionG3(ciudades->conexiones.raiz,codConexion,flag);
-	    ExisteConexionG2(ciudades->derecha,codConexion, flag);
-	}
-	return flag;
-}
-
-bool ExisteConexionG(pNodoBinario paises,int &codConexion, bool &flag){
-    if(paises==NULL){
-    	return flag;
-	}
-	else{
-	
-	    ExisteConexionG(paises->Hizq,codConexion, flag);
-	    ExisteConexionG2(paises->ciudad,codConexion,flag);
-	    ExisteConexionG(paises->Hder,codConexion, flag);
-	}
-	return flag;
-}
 
 void listaC::CargarRutas(pNodoBinario &paises,pNodoTipoTren &tipoTrenes){
 	ifstream archivo;

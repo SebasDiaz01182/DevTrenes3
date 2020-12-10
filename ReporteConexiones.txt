@@ -405,3 +405,6 @@ Codigo de Conexion: 432321 Pais destino: 10 Ciudad Destino: 789 Tiempo: 8
 Codigo de Conexion: 96358 Pais destino: 10 Ciudad Destino: 789 Tiempo: 4
 Codigo de Conexion: 936358 Pais destino: 10 Ciudad Destino: 789 Tiempo: 4
 Codigo de Conexion: 936582 Pais destino: 10 Ciudad Destino: 789 Tiempo: 4
+
+Conexiones de la ciudad de codigo 145 del pais 15
+Codigo de Conexion: 9568 Pais destino: 77 Ciudad Destino: 333 Tiempo: 5

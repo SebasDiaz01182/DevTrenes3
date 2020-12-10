@@ -48,11 +48,13 @@ int main(){
 	CargarAdmin(admins);//Carga admin
 	ArbolUsuario usuarios(5);
 	CargarUsuarios(usuarios,paises);//Carga usuarios
-	cout<<"Antes: "<<endl;
+	
+	ConsultarConexiones(paises);
+	/*cout<<"Antes: "<<endl;
 	admins.traverse();
 	cout<<"Despues: "<<endl;
 	admins.EliminarB(123);
-	admins.traverse();
+	admins.traverse();*/
 	/*
 	listaBoleteria boletos;
 	listaUsuario listaUsuarios;
