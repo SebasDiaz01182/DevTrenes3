@@ -60,3 +60,11 @@ Usuario: 214213 Cantidad de Reservas: 3
 ------------------Registro Compras------------------
 ------------------Registro Compras------------------
 ------------------Registro Compras------------------
+------------------Registro Compras------------------
+------------------Registro Compras------------------
+------------------Registro Compras------------------
+------------------Registro Compras------------------
+------------------Registro Compras------------------
+------------------Registro Compras------------------
+------------------Registro Compras------------------
+------------------Registro Compras------------------

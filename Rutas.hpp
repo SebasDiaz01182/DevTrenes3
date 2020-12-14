@@ -269,6 +269,7 @@ void listaC::DevolverRuta(int codRuta, pnodoCir &ruta){
 	}
 }
 
+
 void listaC::CargarRutas(pNodoBinario &paises,pNodoTipoTren &tipoTrenes){
 	ifstream archivo;
     string texto;
@@ -740,6 +741,7 @@ void EliminarRN(pNodoBinarioRN &conexiones, int &x){
     	EliminarRN(conexiones->Hder, x);
 	}
     else{
+    	cout<<"La encontre es la :"<<conexiones->valor<<endl;
         pNodoBinarioRN p = conexiones;
         conexiones = unirRN(conexiones->Hizq, conexiones->Hder);
         delete p;
@@ -795,8 +797,74 @@ int ContarConexiones(pNodoBinarioRN &conexiones,int cont){
 		ContarConexiones(conexiones->Hder,cont);
 	}
 }
+// FUNCION PARA BORRAR DE MANERA GLOBAL LAS CONEXIONES
+bool borrarConexionG3(pNodoBinarioRN &Rcx, int &codCiudad,bool &flag, listaC &rutas, int codConexion[], int &x, pNodoBinarioRN nodos[]){
+	if(Rcx==NULL){
+    return flag;
+	}
+	else{
+	
+	    borrarConexionG3(Rcx->Hizq,codCiudad, flag,rutas, codConexion, x, nodos);
+	    if (codCiudad==Rcx->codCiudad){
+	    	try{
+	    		codConexion[x]= Rcx->valor;
+	    		nodos[x] = Rcx;
+		    	x++;
+		    	//Aqui se elimina la ruta y la conexion de codigo de ciudad a borrar
+		    	rutas.BorrarRuta(Rcx->valor);
+		    	//EliminarRN(Rcx,Rcx->valor);
+		        flag=true;
+		        throw flag;
+			}
+			catch(bool flag){
+			}
+	    }
+	    borrarConexionG3(Rcx->Hder,codCiudad, flag,rutas, codConexion, x, nodos);
+	}
+	return flag;
+}
 
+bool borrarConexionG2(NodoAVL *&ciudades, int &codCiudad,bool &flag, listaC &rutas, int codConexion[], int &x, pNodoBinarioRN nodos[]){ 
+    if(ciudades==NULL){
+    	return flag;
+	}
+	else{
+	
+	    borrarConexionG2(ciudades->izquierda,codCiudad, flag,rutas, codConexion, x, nodos);
+	    borrarConexionG3(ciudades->conexiones.raiz,codCiudad,flag,rutas, codConexion, x, nodos);
+	    borrarConexionG2(ciudades->derecha,codCiudad, flag,rutas, codConexion, x, nodos);
+	}
+	return flag;
+}
+
+bool borrarConexionG(pNodoBinario &paises,int &codCiudad, bool &flag, listaC &rutas, int codConexion[], int &x, pNodoBinarioRN nodos[]){
+    if(paises==NULL){
+    	return flag;
+	}
+	else{
+	
+	    borrarConexionG(paises->Hizq,codCiudad, flag,rutas, codConexion, x, nodos);
+	    borrarConexionG2(paises->ciudad,codCiudad,flag,rutas, codConexion, x, nodos);
+	    borrarConexionG(paises->Hder,codCiudad, flag,rutas, codConexion, x, nodos);
+	}
+	return flag;
+}
+
+void EliminarConexionesCiudades(pNodoBinarioRN nodos[], int codConexion[]){
+	int x= 0;
+	while (x<150){
+		if(codConexion[x]==0){
+			break;
+		}
+		else{
+			cout<<codConexion[x]<<" - "<<nodos[x]->valor<<endl;
+			EliminarRN(nodos[x],codConexion[x]);
+			x++;
+		}
+	}
+}
 void EliminarCiudad(pNodoBinario &paises,listaC &rutas){
+	bool flag = false;
 	int codPais; cout<<"Ingrese el codigo del pais: "; cin>>codPais; cout<<endl;
 	int codCiudad; cout<<"Ingrese el codigo de la ciudad: "; cin>>codCiudad; cout<<endl;
 	if(ExistePais(paises,codPais)){
@@ -812,8 +880,10 @@ void EliminarCiudad(pNodoBinario &paises,listaC &rutas){
 			while(ciudadAux->conexiones.raiz!=NULL){
 				EliminarRN(ciudadAux->conexiones.raiz,ciudadAux->conexiones.raiz->valor);
 			}
-			
-			
+			//Borrar conexiones y rutas globales
+			int codConexion[150];  int x = 0; pNodoBinarioRN nodos[150];
+			borrarConexionG(paises,codCiudad,flag, rutas, codConexion, x, nodos);
+			EliminarConexionesCiudades(nodos, codConexion);
 			cout<<"Realizado con puto exito."<<endl;
 		}
 		else{

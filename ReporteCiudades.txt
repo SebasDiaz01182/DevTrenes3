@@ -246,3 +246,110 @@ Madrid , codigo 111
 Barcelona , codigo 145
 Madrid , codigo 111
 ------------------Registro Ciudades------------------
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------------------Registro Ciudades------------------
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------------------Registro Ciudades------------------
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------------------Registro Ciudades------------------
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------------------Registro Ciudades------------------
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------------------Registro Ciudades------------------
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------------------Registro Ciudades------------------
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------------------Registro Ciudades------------------
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 20 ------
+Ostrava , codigo 650
+Brno , codigo 321
+Praga , codigo 678
+------ Ciudades del pais: 10 ------
+Gemenos , codigo 789
+Marsella , codigo 234
+------------------Registro Ciudades------------------
