@@ -10,6 +10,7 @@
 #include "UsuarioReservacion.hpp"
 #include "Boleteria.hpp"
 #pragma once 
+
 using namespace std;
 
 class Nodo {
@@ -40,6 +41,7 @@ public:
 	void BorrarFinal();
 	void BorrarInicio();
 	void borrarPosicion(int pos);
+	void BorrarRuta(int codConexion);
 	int largoLista();
 	void CargarRutas(pNodoBinario& paises, pNodoTipoTren& tipoTrenes);
 	bool ExisteRuta(int codRuta);
@@ -215,6 +217,29 @@ bool listaC::ExisteRuta(int codRuta){
 		}
 	}
 }
+
+void listaC::BorrarRuta(int codConexion){
+	pnodoCir aux = primero;
+	pnodoCir aux2 = primero->siguiente;
+	while(aux->siguiente!=primero){
+		if(aux2->codConexion==codConexion){
+			aux2 = aux2->siguiente;
+			pnodoCir temp = aux->siguiente;
+			aux->siguiente = aux2;
+			delete temp;
+		}
+		else{
+			aux2 = aux2->siguiente;
+			aux = aux->siguiente;
+		}	
+	}
+	if(aux2->codConexion==codConexion){
+		aux->siguiente = primero->siguiente;
+		primero=primero->siguiente;
+		delete aux2;
+	}
+}
+
 NodoAVLTren* DevolverTren(NodoAVLTren* &R,int codTren){
 	 if(R->codTren==codTren){
 	 	return R;
@@ -693,34 +718,7 @@ int RutaMenor(listaC &rutas){
 //Eliminaciones
 //---------------------------------------------------------
 
-
-
-pNodoBinario unirABB(pNodoBinario izq, pNodoBinario der){
-    if(izq==NULL) return der;
-    if(der==NULL) return izq;
-
-    pNodoBinario centro = unirABB(izq->Hder, der->Hizq);
-    izq->Hder = centro;
-    der->Hizq = izq;
-    return der;
-}
-
-void EliminarPais(pNodoBinario &paises, int x){
-     if(paises==NULL) return;
-
-     if(x<paises->valor)
-         EliminarPais(paises->Hizq, x);
-     else if(x>paises->valor)
-         EliminarPais(paises->Hder, x);
-
-     else{
-         pNodoBinario p = paises;
-         paises = unirABB(paises->Hizq, paises->Hder);
-         delete p;
-     }
-}
-
- pNodoBinarioRN unirRN(pNodoBinarioRN izq, pNodoBinarioRN der){
+ pNodoBinarioRN unirRN(pNodoBinarioRN &izq, pNodoBinarioRN &der){
     if(izq==NULL) return der;
     if(der==NULL) return izq;
 
@@ -730,7 +728,7 @@ void EliminarPais(pNodoBinario &paises, int x){
     return der;
 }
 
-void EliminarRN(pNodoBinarioRN &conexiones, int x){
+void EliminarRN(pNodoBinarioRN &conexiones, int &x){
     if(conexiones==NULL){
     	cout<<"NULL"<<endl;
     	return;
@@ -748,67 +746,7 @@ void EliminarRN(pNodoBinarioRN &conexiones, int x){
     }
 }
 //-----------------------BORRADOS-----------------------
-void deleteNode(pNodoBinarioRN root, int data)
-{
-    if(root == NULL){
-       
-    }
 
-    queue<pNodoBinarioRN> q;
-    q.push(root);
-
-    while(!q.empty())
-    {
-        pNodoBinarioRN temp = q.front();
-        q.pop();
-
-        if(temp->valor == data)
-        {
-            pNodoBinarioRN current = root;
-            pNodoBinarioRN prev;
-
-            while(current->Hder != NULL)
-            {
-                prev = current;
-                current = current->Hder;
-            }
-
-            temp->valor = current->valor;
-            prev->Hder = NULL;
-            free(current);
-
-            cout << "Deleted\n";
-
-            
-        }
-
-        if(temp->Hizq != NULL)
-            q.push(temp->Hizq);
-        if(temp->Hder != NULL)
-            q.push(temp->Hder);
-    }
-
-}
-//-----------------
-
-void EliminarCiudad(pNodoBinario &paises,listaC &rutas){
-	int codPais; cout<<"Ingrese el codigo del pais: "; cin>>codPais; cout<<endl;
-	int codCiudad; cout<<"Ingrese el codigo de la ciudad: "; cin>>codCiudad; cout<<endl;
-	if(ExistePais(paises,codPais)){
-		pNodoBinario paisAux = DevolverPais(paises,codPais);
-		if(ExisteCiudad(paisAux->ciudad,codCiudad)){
-					
-		}
-		else{
-			cout<<"La ciudad de origen o destino de la conexion no existe"<<endl;
-		}
-	}
-	else{
-		cout<<"El pais de origen o destino de la conexion no existe"<<endl;
-	}
-}
-
-/*
 void EliminarConexion(pNodoBinario &paises, listaC &rutas){
 	int codPais; cout<<"Ingrese el codigo del pais: "; cin>>codPais; cout<<endl;
 	int codCiudad; cout<<"Ingrese el codigo de la ciudad: "; cin>>codCiudad; cout<<endl;
@@ -834,4 +772,57 @@ void EliminarConexion(pNodoBinario &paises, listaC &rutas){
 		cout<<"El pais de origen o destino de la conexion no existe"<<endl;
 	}
 }
-*/
+
+void RecolectarRutas(pNodoBinarioRN &conexiones,int codRutas[],int indice){
+	if(conexiones==NULL){
+		return;
+	}
+	else{
+		codRutas[indice] = conexiones->valor;
+		indice++;
+		RecolectarRutas(conexiones->Hizq,codRutas,indice);
+		RecolectarRutas(conexiones->Hder,codRutas,indice);	
+	}
+}
+
+int ContarConexiones(pNodoBinarioRN &conexiones,int cont){
+	if (conexiones==NULL){
+		return cont;
+	}	
+	else{
+		cont++;
+		ContarConexiones(conexiones->Hizq,cont);
+		ContarConexiones(conexiones->Hder,cont);
+	}
+}
+
+void EliminarCiudad(pNodoBinario &paises,listaC &rutas){
+	int codPais; cout<<"Ingrese el codigo del pais: "; cin>>codPais; cout<<endl;
+	int codCiudad; cout<<"Ingrese el codigo de la ciudad: "; cin>>codCiudad; cout<<endl;
+	if(ExistePais(paises,codPais)){
+		pNodoBinario paisAux = DevolverPais(paises,codPais);
+		if(ExisteCiudad(paisAux->ciudad,codCiudad)){
+			NodoAVL *ciudadAux = DevolverCiudad(paisAux->ciudad,codCiudad);
+			int z = ContarConexiones(ciudadAux->conexiones.raiz,0);
+			int codRutas[z];
+			RecolectarRutas(ciudadAux->conexiones.raiz,codRutas,0);
+			for(int w =0;w<z;w++){
+				rutas.BorrarRuta(codRutas[w]);
+			}
+			while(ciudadAux->conexiones.raiz!=NULL){
+				EliminarRN(ciudadAux->conexiones.raiz,ciudadAux->conexiones.raiz->valor);
+			}
+			
+			
+			cout<<"Realizado con puto exito."<<endl;
+		}
+		else{
+			cout<<"La ciudad de origen o destino de la conexion no existe"<<endl;
+		}
+	}
+	else{
+		cout<<"El pais de origen o destino de la conexion no existe"<<endl;
+	}
+}
+
+

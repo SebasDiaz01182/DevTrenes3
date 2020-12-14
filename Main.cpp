@@ -48,14 +48,20 @@ int main(){
 	CargarAdmin(admins);//Carga admin
 	ArbolUsuario usuarios(5);
 	CargarUsuarios(usuarios,paises);//Carga usuarios
-	
-	ConsultarConexiones(paises);
-	/*cout<<"Antes: "<<endl;
-	admins.traverse();
+	cout<<"Rutas"<<endl;
+	rutas->ConsultarRuta();
+	cout<<"Antes: "<<endl;
+	ConsultarCiudades(paises);
+	EliminarCiudad(paises,*rutas);
 	cout<<"Despues: "<<endl;
-	admins.EliminarB(123);
-	admins.traverse();*/
-	/*
+	ConsultarCiudades(paises);
+	cout<<"Rutas"<<endl;
+	rutas->ConsultarRuta();
+	ConsultarConexiones(paises);
+	
+	
+	
+	//ConsultarConexiones(paises);	
 	listaBoleteria boletos;
 	listaUsuario listaUsuarios;
 	ofstream archivo; archivo.open("ReportePaises.txt", ios::app); archivo<<"------------------Registro Paises------------------"<<endl; archivo.close();
@@ -65,7 +71,7 @@ int main(){
 	ofstream archivoUMas; archivoUMas.open("ReporteUsuario.txt", ios::app); archivoUMas<<"------------------Registro Usuario------------------"<<endl; archivoUMas.close();
 	ofstream archivoCompU; archivoCompU.open("ReporteCompras.txt", ios::app); archivoCompU<<"------------------Registro Compras------------------"<<endl; archivoCompU.close();
 	ofstream archivoTren; archivoTren.open("ReporteTrenes.txt", ios::app); archivoTren<<"------------------Registro Trenes reservados------------------"<<endl; archivoTren.close();
-	
+	/*
 	//---------------------------------------------------------Menu Principal------------------------------------------------- 
 	//Variables del menu-----------------------------
     int opcion,codUsuario,registrar,rutaMa,rutaMe;
@@ -163,7 +169,7 @@ int main(){
 									                system("pause>nul"); // Pausa 
 									                break;    
 									            case 5:
-									            	rutas.InsertarRutas(paises,tipoTrenes);
+									            	rutas->InsertarRutas(paises,tipoTrenes);
 									                system("pause>nul"); // Pausa 
 									                break;  
 												case 6:
@@ -218,7 +224,7 @@ int main(){
 									         
 									        switch (opcion3) { 
 									            case 1:
-									            	rutas.ModificarPrecio(paises);
+									            	rutas->ModificarPrecio(paises);
 									                system("pause>nul"); // Pausa 
 									                break;									                 
 									            case 2: 
@@ -234,7 +240,7 @@ int main(){
 									                system("pause>nul"); // Pausa 
 									                break; 
 									            case 5:
-									            	rutas.ModificarRutas(paises);
+									            	rutas->ModificarRutas(paises);
 									                system("pause>nul"); // Pausa 
 									                break;    
 												case 6: 
@@ -262,14 +268,14 @@ int main(){
 					                system("pause>nul"); // Pausa 
 					                break; 
 								case 7:
-									rutas.ConsultarPrecio(tipoTrenes);
+									rutas->ConsultarPrecio(tipoTrenes);
 					                system("pause>nul"); // Pausa 
 					                break;                     
 					    	 	case 8:
 					                system("pause>nul"); // Pausa 
 					                break; 
 								case 9:
-									rutas.ConsultarRuta();
+									rutas->ConsultarRuta();
 					                system("pause>nul"); // Pausa 
 					                break; 
 								case 10:
@@ -277,12 +283,12 @@ int main(){
 					                system("pause>nul"); // Pausa 
 					                break;
 								case 11:
-									rutaMa = RutaMayor(rutas); 
+									//rutaMa = RutaMayor(rutas); 
 									cout<<"La ruta mas utilizada es "<<rutaMa<<endl;
 					                system("pause>nul"); // Pausa 
 					                break; 
 								case 12:
-									rutaMe = RutaMenor(rutas);
+									//rutaMe = RutaMenor(rutas);
 									cout<<"La ruta menos utilizada es "<<rutaMe<<endl;
 					                system("pause>nul"); // Pausa 
 					                break;	
@@ -349,7 +355,7 @@ int main(){
 					                system("pause>nul"); // Pausa 
 					                break;
 								case 22:
-									Reservacion(tipoTrenes,paises,listaUsuarios,rutas, reporteCiudad, reporteTren);
+									//Reservacion(tipoTrenes,paises,listaUsuarios,rutas, reporteCiudad, reporteTren);
 					                system("pause>nul"); // Pausa 
 					                break;				                   
 						} 		
@@ -395,7 +401,7 @@ int main(){
 							                system("pause>nul"); // Pausa 
 							                break;                     
 							    	 	case 4:
-										 	rutas.ConsultarRuta();
+										 	rutas->ConsultarRuta();
 							                system("pause>nul"); // Pausa 
 							                break; 
 										case 5: 
@@ -427,5 +433,6 @@ int main(){
     	} 		 
 	}while (opcion != 3);
 	*/
+	
     return 0;
 }
