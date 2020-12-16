@@ -504,3 +504,69 @@ Codigo de Conexion: 964353 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
 Codigo de Conexion: 9635 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
 Codigo de Conexion: 96352 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
 ------------------Registro Conexiones------------------
+
+Conexiones de la ciudad de codigo 678 del pais 20
+
+No existen conexiones de la ciudad de codigo 678 del pais 20
+
+Conexiones de la ciudad de codigo 678 del pais 20
+
+No existen conexiones de la ciudad de codigo 678 del pais 20
+------------------Registro Conexiones------------------
+
+Conexiones de la ciudad de codigo 789 del pais 10
+Codigo de Conexion: 96435 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
+Codigo de Conexion: 9635 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
+Codigo de Conexion: 96352 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
+Codigo de Conexion: 964353 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
+Codigo de Conexion: 9635 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
+Codigo de Conexion: 96352 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+
+Conexiones de la ciudad de codigo 789 del pais 10
+Codigo de Conexion: 96435 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
+Codigo de Conexion: 9635 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
+Codigo de Conexion: 96352 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
+Codigo de Conexion: 964353 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
+Codigo de Conexion: 9635 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
+Codigo de Conexion: 96352 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------

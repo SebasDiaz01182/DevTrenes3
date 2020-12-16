@@ -44,25 +44,16 @@ int main(){
 	CargarCodRutas(tipoTrenes,*rutas); //CodRutas
 	
 	
-	BTree admins(3);
+	BTree admins(5);
 	CargarAdmin(admins);//Carga admin
-	ArbolUsuario usuarios(5);
+	ArbolUsuario usuarios(2);
 	CargarUsuarios(usuarios,paises);//Carga usuarios
 	
-	
-	
-	
-	cout<<"Rutas"<<endl;
-	rutas->ConsultarRuta();
 	cout<<"Antes: "<<endl;
-	ConsultarCiudades(paises);
-	EliminarCiudad(paises,*rutas);
+	admins.traverse();
 	cout<<"Despues: "<<endl;
-	ConsultarCiudades(paises);
-	cout<<"Rutas"<<endl;
-	rutas->ConsultarRuta();
-	ConsultarConexiones(paises);
-
+	admins.EliminarB(123);
+	admins.traverse();
 	
 	//ConsultarConexiones(paises);	
 	listaBoleteria boletos;

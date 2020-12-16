@@ -51,13 +51,11 @@ public:
 	void ConsultarPrecio(pNodoTipoTren& tipoTrenes);
 	void DevolverRuta(int codRuta, pnodoCir &ruta);
 };
-listaC::listaC()
-{
+listaC::listaC(){
     primero = NULL;
 }
 
-listaC::~listaC()
-{
+listaC::~listaC(){
     if (primero != NULL) {
         Nodo *reco = primero->siguiente;
         Nodo *bor;
@@ -92,8 +90,7 @@ void ListaCircular::insertarPrimero(int codTipTren, int trenc, int rutac, int co
     }
 }
 */
-void listaC::insertarUltimo(int codTipTren, int trenc, int rutac, int conexionc, int precioc) 
-{
+void listaC::insertarUltimo(int codTipTren, int trenc, int rutac, int conexionc, int precioc){
     Nodo *nuevo = new Nodo();
     nuevo->codTipTren = codTipTren; nuevo->codTren = trenc; nuevo->codRutas = rutac; nuevo->codConexion = conexionc; nuevo->precio= precioc;
     if (primero == NULL) 
@@ -112,8 +109,7 @@ void listaC::insertarUltimo(int codTipTren, int trenc, int rutac, int conexionc,
     }
 }
 
-bool listaC::vacia()
-{
+bool listaC::vacia(){
     if (primero == NULL)
         return true;
     else
@@ -717,7 +713,81 @@ int RutaMenor(listaC &rutas){
 
 
 //Eliminaciones
+
+
 //---------------------------------------------------------
+NodoAVL* unirRN(NodoAVL* &izq, NodoAVL* &der){
+    if(izq==NULL) return der;
+    if(der==NULL) return izq;
+
+    NodoAVL* centro = unirRN(izq->derecha, der->izquierda);
+    izq->derecha = centro;
+    der->izquierda = izq;
+    return der;
+}
+
+void EliminarAVL(NodoAVL *&conexiones, int &x){
+    if(conexiones==NULL){
+    	cout<<"NULL"<<endl;
+    	return;
+	}
+    if(x<conexiones->codCiudad){
+    	EliminarAVL(conexiones->izquierda, x);
+	}
+    else if(x>conexiones->codCiudad){
+    	EliminarAVL(conexiones->derecha, x);
+	}
+    else{
+    	cout<<"La encontre es la :"<<conexiones->codCiudad<<endl;
+        NodoAVL *p = conexiones;
+        conexiones = unirRN(conexiones->izquierda, conexiones->derecha);
+        delete p;
+    }
+}
+
+//---------------------------------------------------------------------------
+NodoAVL* findMin(NodoAVL* t)
+    {
+        if(t == NULL)
+            return NULL;
+        else if(t->izquierda == NULL)
+            return t;
+        else
+            return findMin(t->izquierda);
+    }
+
+    NodoAVL* findMax(NodoAVL* t) {
+        if(t == NULL)
+            return NULL;
+        else if(t->derecha == NULL)
+            return t;
+        else
+            return findMax(t->derecha);
+    }
+
+    NodoAVL* remove(int x, NodoAVL* &t) {
+        NodoAVL* temp;
+        if(t == NULL)
+            return NULL;
+        else if(x < t->codCiudad)
+            t->izquierda = remove(x, t->izquierda);
+        else if(x > t->codCiudad)
+            t->derecha = remove(x, t->derecha);
+        else if(t->izquierda && t->derecha){
+            temp = findMin(t->derecha);
+            t->codCiudad = temp->codCiudad;
+            t->derecha = remove(t->codCiudad, t->derecha);
+        }
+        else{
+            temp = t;
+            if(t->izquierda == NULL)
+                t = t->derecha;
+            else if(t->derecha == NULL)
+                t = t->izquierda;
+            delete temp;
+        }
+        return t;
+    }
 
  pNodoBinarioRN unirRN(pNodoBinarioRN &izq, pNodoBinarioRN &der){
     if(izq==NULL) return der;
@@ -812,7 +882,6 @@ bool borrarConexionG3(pNodoBinarioRN &Rcx, int &codCiudad,bool &flag, listaC &ru
 		    	x++;
 		    	//Aqui se elimina la ruta y la conexion de codigo de ciudad a borrar
 		    	rutas.BorrarRuta(Rcx->valor);
-		    	//EliminarRN(Rcx,Rcx->valor);
 		        flag=true;
 		        throw flag;
 			}
@@ -854,15 +923,17 @@ void EliminarConexionesCiudades(pNodoBinarioRN nodos[], int codConexion[]){
 	int x= 0;
 	while (x<150){
 		if(codConexion[x]==0){
+			cout<<"NULO"<<endl;
 			break;
 		}
 		else{
 			cout<<codConexion[x]<<" - "<<nodos[x]->valor<<endl;
-			EliminarRN(nodos[x],codConexion[x]);
+			//EliminarRN(nodos[x],codConexion[x]); // acaaaaaaaaaaa
 			x++;
 		}
 	}
 }
+
 void EliminarCiudad(pNodoBinario &paises,listaC &rutas){
 	bool flag = false;
 	int codPais; cout<<"Ingrese el codigo del pais: "; cin>>codPais; cout<<endl;
@@ -884,7 +955,10 @@ void EliminarCiudad(pNodoBinario &paises,listaC &rutas){
 			int codConexion[150];  int x = 0; pNodoBinarioRN nodos[150];
 			borrarConexionG(paises,codCiudad,flag, rutas, codConexion, x, nodos);
 			EliminarConexionesCiudades(nodos, codConexion);
+			//Eliminar el nodo AVL
+			ciudadAux = remove(codCiudad,ciudadAux);
 			cout<<"Realizado con puto exito."<<endl;
+			
 		}
 		else{
 			cout<<"La ciudad de origen o destino de la conexion no existe"<<endl;

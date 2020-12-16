@@ -35,10 +35,11 @@ class TreeNode {
 
   void removeFromNonLeaf(int idx); 
 
-  int getPred(int idx); 
+  int getPred(int idx);
+  string getPredstr(int idx);  
 
   int getSucc(int idx); 
-
+  string getSuccstr(int idx);
   void fill(int idx); 
 
   void borrowFromPrev(int idx); 
@@ -277,10 +278,28 @@ void TreeNode::removeFromLeaf (int idx) {
     return; 
 }
 
-void TreeNode::removeFromNonLeaf(int idx) { 
+string TreeNode::getPredstr(int idx) { 
+    // Keep moving to the right most node until we reach a leaf 
+    TreeNode *cur=C[idx]; 
+    while (!cur->leaf) 
+        cur = cur->C[cur->n]; 
   
+    // Return the last key of the leaf 
+    return cur->nombres[cur->n-1]; 
+}
+
+string TreeNode::getSuccstr(int idx){ 
+  
+    // Keep moving the left most node starting from C[idx+1] until we reach a leaf 
+    TreeNode *cur = C[idx+1]; 
+    while (!cur->leaf) 
+        cur = cur->C[0]; 
+  
+    // Return the first key of the leaf 
+    return cur->nombres[0]; 
+} 
+void TreeNode::removeFromNonLeaf(int idx){ 
     int k = keys[idx]; 
-  
     // If the child that precedes k (C[idx]) has atleast t keys, 
     // find the predecessor 'pred' of k in the subtree rooted at 
     // C[idx]. Replace k by pred. Recursively delete pred 
@@ -288,8 +307,9 @@ void TreeNode::removeFromNonLeaf(int idx) {
     if (C[idx]->n >= t) 
     { 
         int pred = getPred(idx); 
-        keys[idx] = pred;
-		nombres[idx] = pred; 
+        string prednom = getPredstr(idx);
+        keys[idx] = pred; 
+        nombres[idx] = prednom;
         C[idx]->remove(pred); 
     } 
   
@@ -301,8 +321,9 @@ void TreeNode::removeFromNonLeaf(int idx) {
     else if  (C[idx+1]->n >= t) 
     { 
         int succ = getSucc(idx); 
-        keys[idx] = succ;
-		nombres[idx] = succ; 
+        string succnom = getSuccstr(idx);
+        keys[idx] = succ; 
+        nombres[idx] = succnom;
         C[idx+1]->remove(succ); 
     } 
   
@@ -316,7 +337,7 @@ void TreeNode::removeFromNonLeaf(int idx) {
         C[idx]->remove(k); 
     } 
     return; 
-} 
+}
 
 int TreeNode::getPred(int idx) { 
     // Keep moving to the right most node until we reach a leaf 
@@ -328,6 +349,8 @@ int TreeNode::getPred(int idx) {
     return cur->keys[cur->n-1]; 
 }
 
+
+
 int TreeNode::getSucc(int idx) { 
   
     // Keep moving the left most node starting from C[idx+1] until we reach a leaf 
@@ -338,7 +361,7 @@ int TreeNode::getSucc(int idx) {
     // Return the first key of the leaf 
     return cur->keys[0]; 
 } 
-
+ 
 void TreeNode::fill(int idx) { 
   
     // If the previous child(C[idx-1]) has more than t-1 keys, borrow a key 
