@@ -9,6 +9,7 @@
 #include "Reservacion.hpp"
 #include "UsuarioReservacion.hpp"
 #include "Boleteria.hpp"
+#include "Usuarios.hpp"
 #pragma once 
 
 using namespace std;
@@ -919,22 +920,9 @@ bool borrarConexionG(pNodoBinario &paises,int &codCiudad, bool &flag, listaC &ru
 	return flag;
 }
 
-void EliminarConexionesCiudades(pNodoBinarioRN nodos[], int codConexion[]){
-	int x= 0;
-	while (x<150){
-		if(codConexion[x]==0){
-			cout<<"NULO"<<endl;
-			break;
-		}
-		else{
-			cout<<codConexion[x]<<" - "<<nodos[x]->valor<<endl;
-			//EliminarRN(nodos[x],codConexion[x]); // acaaaaaaaaaaa
-			x++;
-		}
-	}
-}
 
-void EliminarCiudad(pNodoBinario &paises,listaC &rutas){
+
+void EliminarCiudad(pNodoBinario &paises,listaC &rutas,ArbolUsuario &usuarios){
 	bool flag = false;
 	int codPais; cout<<"Ingrese el codigo del pais: "; cin>>codPais; cout<<endl;
 	int codCiudad; cout<<"Ingrese el codigo de la ciudad: "; cin>>codCiudad; cout<<endl;
@@ -954,11 +942,13 @@ void EliminarCiudad(pNodoBinario &paises,listaC &rutas){
 			//Borrar conexiones y rutas globales
 			int codConexion[150];  int x = 0; pNodoBinarioRN nodos[150];
 			borrarConexionG(paises,codCiudad,flag, rutas, codConexion, x, nodos);
-			EliminarConexionesCiudades(nodos, codConexion);
+			int codUsuario = usuarios.CiudadUsuario(codCiudad);
+			if(codUsuario!=666){
+				usuarios.EliminarB(codUsuario);	
+			}
 			//Eliminar el nodo AVL
-			ciudadAux = remove(codCiudad,ciudadAux);
+			//ciudadAux = remove(codCiudad,ciudadAux);
 			cout<<"Realizado con puto exito."<<endl;
-			
 		}
 		else{
 			cout<<"La ciudad de origen o destino de la conexion no existe"<<endl;

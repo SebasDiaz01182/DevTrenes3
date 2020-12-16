@@ -41,11 +41,20 @@ class NodoUsuario {
 
     void removeFromNonLeaf(int idx); 
 
-    int getPred(int idx); 
+    int getPred(int idx);
+	string getPredstr(int idx);
+	int getPredPais(int idx);
+	int getPredCiudad(int idx);
+	int getPredEstado(int idx);
+	 
 
     int getSucc(int idx); 
-
-    void fill(int idx); 
+    string getSuccstr(int idx); 
+    int getSuccPais(int idx);
+    int getSuccCiudad(int idx);
+    int getSuccEstado(int idx);
+    
+	void fill(int idx); 
 
     void borrowFromPrev(int idx); 
   
@@ -56,6 +65,7 @@ class NodoUsuario {
 
   NodoUsuario *search(int k);
   bool ExisteUsuario(int k);
+  int CiudadUsuario(int k);
 
   friend class ArbolUsuario;
 };
@@ -81,6 +91,10 @@ class ArbolUsuario {
   bool ExisteUsuario(int k){
   	return (root==NULL) ? false : root->ExisteUsuario(k);
   }
+  int CiudadUsuario(int k){
+  	return (root==NULL) ? false : root->CiudadUsuario(k);
+  }
+  
 
   	void insert(int k,string pnombre,int ppais,int pciudad,int pestado);
   	
@@ -252,6 +266,23 @@ bool NodoUsuario::ExisteUsuario(int k) {
   return C[i]->ExisteUsuario(k);
 }
 
+int NodoUsuario::CiudadUsuario(int k) {
+	int i = 0;
+  while (i < n && k > ciudad[i])
+    i++;
+
+  if (ciudad[i] == k){
+  	return keys[i];
+  }
+    
+
+  if (leaf == true){
+  	return 666;
+  }
+  return C[i]->ExisteUsuario(k);
+}
+
+
 int NodoUsuario::findKey(int k) { 
     int idx=0; 
     while (idx<n && keys[idx] < k) 
@@ -331,12 +362,16 @@ void NodoUsuario::removeFromNonLeaf(int idx) {
     // in C[idx] 
     if (C[idx]->n >= t) 
     { 
-        int pred = getPred(idx); 
+        int pred = getPred(idx);
+		string prednom = getPredstr(idx);
+		int predpais = getPredPais(idx);
+		int predciudad = getPredCiudad(idx);
+		int predestado = getPredEstado(idx);
         keys[idx] = pred;
-		//nombres[idx] = pred;
-		//pais[idx] = pred;
-		//ciudad[idx] = pred;
-		//estado[idx] = pred;     
+		nombres[idx] = prednom;
+		pais[idx] = predpais;
+		ciudad[idx] = predciudad;
+		estado[idx] = predestado;     
         C[idx]->remove(pred); 
     } 
   
@@ -347,12 +382,16 @@ void NodoUsuario::removeFromNonLeaf(int idx) {
     // Recursively delete succ in C[idx+1] 
     else if  (C[idx+1]->n >= t) 
     { 
-        int succ = getSucc(idx); 
+        int succ = getSucc(idx);
+		string succnom = getSuccstr(idx);
+		int succpais = getSuccPais(idx);
+		int succciudad = getSuccCiudad(idx);
+		int succestado = getSuccEstado(idx);
         keys[idx] = succ;
-		//nombres[idx] = succ;
-		//pais[idx] = succ;
-		//ciudad[idx] = succ;
-		//estado[idx] = succ;     
+		nombres[idx] = succnom;
+		pais[idx] = succpais;
+		ciudad[idx] = succciudad;
+		estado[idx] = succestado;
         C[idx+1]->remove(succ); 
     } 
   
@@ -367,7 +406,26 @@ void NodoUsuario::removeFromNonLeaf(int idx) {
     } 
     return; 
 } 
+string NodoUsuario::getPredstr(int idx) { 
+    // Keep moving to the right most node until we reach a leaf 
+    NodoUsuario *cur=C[idx]; 
+    while (!cur->leaf) 
+        cur = cur->C[cur->n]; 
+  
+    // Return the last key of the leaf 
+    return cur->nombres[cur->n-1]; 
+}
 
+string NodoUsuario::getSuccstr(int idx){ 
+  
+    // Keep moving the left most node starting from C[idx+1] until we reach a leaf 
+    NodoUsuario *cur = C[idx+1]; 
+    while (!cur->leaf) 
+        cur = cur->C[0]; 
+  
+    // Return the first key of the leaf 
+    return cur->nombres[0]; 
+} 
 
 int NodoUsuario::getPred(int idx) { 
     // Keep moving to the right most node until we reach a leaf 
@@ -388,6 +446,75 @@ int NodoUsuario::getSucc(int idx) {
   
     // Return the first key of the leaf 
     return cur->keys[0]; 
+}
+
+int NodoUsuario::getPredPais(int idx) { 
+    // Keep moving to the right most node until we reach a leaf 
+    NodoUsuario *cur=C[idx]; 
+    while (!cur->leaf) 
+        cur = cur->C[cur->n]; 
+  
+    // Return the last key of the leaf 
+    return cur->pais[cur->n-1]; 
+}
+
+
+
+int NodoUsuario::getSuccPais(int idx) { 
+  
+    // Keep moving the left most node starting from C[idx+1] until we reach a leaf 
+    NodoUsuario *cur = C[idx+1]; 
+    while (!cur->leaf) 
+        cur = cur->C[0]; 
+  
+    // Return the first key of the leaf 
+    return cur->pais[0]; 
+}
+
+int NodoUsuario::getPredCiudad(int idx) { 
+    // Keep moving to the right most node until we reach a leaf 
+    NodoUsuario *cur=C[idx]; 
+    while (!cur->leaf) 
+        cur = cur->C[cur->n]; 
+  
+    // Return the last key of the leaf 
+    return cur->ciudad[cur->n-1]; 
+}
+
+
+
+int NodoUsuario::getSuccCiudad(int idx) { 
+  
+    // Keep moving the left most node starting from C[idx+1] until we reach a leaf 
+    NodoUsuario *cur = C[idx+1]; 
+    while (!cur->leaf) 
+        cur = cur->C[0]; 
+  
+    // Return the first key of the leaf 
+    return cur->ciudad[0]; 
+}
+
+int NodoUsuario::getPredEstado(int idx) { 
+    // Keep moving to the right most node until we reach a leaf 
+    NodoUsuario *cur=C[idx]; 
+    while (!cur->leaf) 
+        cur = cur->C[cur->n]; 
+  
+    // Return the last key of the leaf 
+    return cur->estado[cur->n-1]; 
+}
+
+
+
+int NodoUsuario::getSuccEstado(int idx) { 
+  
+    // Keep moving the left most node starting from C[idx+1] until we reach a leaf 
+    NodoUsuario *cur = C[idx+1]; 
+    while (!cur->leaf) 
+        cur = cur->C[0]; 
+  
+    // Return the first key of the leaf 
+    return cur->estado[0]; 
 } 
 
 void NodoUsuario::fill(int idx) { 
@@ -712,3 +839,6 @@ void ModificarEstMigracion(ArbolUsuario &usuarios){
 		cout<<"El pasaporte que ingreso no existe"<<endl;
 	}
 }
+
+
+

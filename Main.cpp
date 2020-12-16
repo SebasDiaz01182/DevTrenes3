@@ -49,11 +49,11 @@ int main(){
 	ArbolUsuario usuarios(2);
 	CargarUsuarios(usuarios,paises);//Carga usuarios
 	
-	cout<<"Antes: "<<endl;
-	admins.traverse();
-	cout<<"Despues: "<<endl;
-	admins.EliminarB(123);
-	admins.traverse();
+	usuarios.traverse();
+	EliminarCiudad(paises,*rutas,usuarios);
+	
+
+	
 	
 	//ConsultarConexiones(paises);	
 	listaBoleteria boletos;
