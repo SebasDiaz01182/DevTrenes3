@@ -267,9 +267,11 @@ void preOrder(NodoAVL *raiz) {
         cout<<"No se pudo crear el archivo"<<endl;
         exit(1);
     }
-    if(raiz != NULL)  {  
-        cout <<raiz->codCiudad<<"-"<<raiz->nombre<<endl;
-        archivo<<raiz->nombre<<" , codigo "<<raiz->codCiudad<<endl;
+    if(raiz != NULL)  {
+		if(!raiz->reporte){
+			cout <<raiz->codCiudad<<"-"<<raiz->nombre<<endl;
+        	archivo<<raiz->nombre<<" , codigo "<<raiz->codCiudad<<endl;
+		} 
         preOrder(raiz->izquierda);  
         preOrder(raiz->derecha);  
     }  

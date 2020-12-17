@@ -49,9 +49,11 @@ int main(){
 	ArbolUsuario usuarios(2);
 	CargarUsuarios(usuarios,paises);//Carga usuarios
 	
-	usuarios.traverse();
+	cout<<"Antes: "<<endl;
+	ConsultarCiudades(paises);
 	EliminarCiudad(paises,*rutas,usuarios);
-	
+	cout<<"Despues: "<<endl;
+	ConsultarCiudades(paises);
 
 	
 	

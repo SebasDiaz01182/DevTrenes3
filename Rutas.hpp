@@ -1,6 +1,7 @@
 #include <fstream> 
 #include <iostream> 
 #include <stdlib.h> 
+#include <bits/stdc++.h>
 #include<string>
 #include"Paises.hpp"
 #include"TipoTren.hpp"
@@ -920,6 +921,50 @@ bool borrarConexionG(pNodoBinario &paises,int &codCiudad, bool &flag, listaC &ru
 	return flag;
 }
 
+NodoAVL* minValueNode(NodoAVL* &node){
+    NodoAVL* current = node;
+ 
+    while (current && current->izquierda != NULL)
+        current = current->izquierda;
+ 
+    return current;
+}
+ 
+
+NodoAVL* deleteNode(NodoAVL* &root, int key){
+  
+    if (root == NULL)
+        return root;
+ 
+    
+    if (key < root->codCiudad)
+        root->izquierda = deleteNode(root->izquierda, key);
+ 
+  
+    else if (key > root->codCiudad)
+        root->derecha = deleteNode(root->derecha, key);
+ 
+    else {
+        
+        if (root->izquierda == NULL) {
+            NodoAVL* temp = root->derecha;
+            free(root);
+            return temp;
+        }
+        else if (root->derecha == NULL) {
+            NodoAVL* temp = root->izquierda;
+            free(root);
+            return temp;
+        }
+        
+        NodoAVL* temp = minValueNode(root->derecha);
+        
+        root->codCiudad = temp->codCiudad;
+
+        root->derecha = deleteNode(root->derecha, temp->codCiudad);
+    }
+    return root;
+}
 
 
 void EliminarCiudad(pNodoBinario &paises,listaC &rutas,ArbolUsuario &usuarios){
@@ -943,11 +988,11 @@ void EliminarCiudad(pNodoBinario &paises,listaC &rutas,ArbolUsuario &usuarios){
 			int codConexion[150];  int x = 0; pNodoBinarioRN nodos[150];
 			borrarConexionG(paises,codCiudad,flag, rutas, codConexion, x, nodos);
 			int codUsuario = usuarios.CiudadUsuario(codCiudad);
-			if(codUsuario!=666){
+			if(codUsuario!=0){
 				usuarios.EliminarB(codUsuario);	
 			}
 			//Eliminar el nodo AVL
-			//ciudadAux = remove(codCiudad,ciudadAux);
+			ciudadAux = deleteNode(ciudadAux,codCiudad); paisAux->ciudad->reporte=true;
 			cout<<"Realizado con puto exito."<<endl;
 		}
 		else{

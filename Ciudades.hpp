@@ -14,6 +14,7 @@ class NodoAVL{
     int codCiudad;
 	string nombre;
 	int reservacion;
+	bool reporte;
 	ArbolRN conexiones;
     NodoAVL *izquierda;  
     NodoAVL *derecha;  
@@ -46,7 +47,8 @@ NodoAVL* newNodoAVL(int codCiudad,string pnombre){
 	nodoAVL->nombre = pnombre;
 	nodoAVL->reservacion = 0; 
     nodoAVL->izquierda = NULL;  
-    nodoAVL->derecha = NULL;  
+    nodoAVL->derecha = NULL;
+	nodoAVL->reporte = false;  
     nodoAVL->FB = 1; 
     return(nodoAVL);  
 }  
@@ -127,7 +129,7 @@ bool ExisteCiudad(NodoAVL *R,int ciudad){
 	 if(R==NULL){
 	 	return false;
 	 }
-	 else if(R->codCiudad==ciudad){
+	 else if((R->codCiudad==ciudad)&&(!R->reporte)){
 	 	return true;
 	 }
 	 else if(ciudad<=R->codCiudad){

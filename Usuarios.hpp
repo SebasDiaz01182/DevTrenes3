@@ -277,7 +277,7 @@ int NodoUsuario::CiudadUsuario(int k) {
     
 
   if (leaf == true){
-  	return 666;
+  	return 0;
   }
   return C[i]->ExisteUsuario(k);
 }
@@ -694,7 +694,7 @@ void NodoUsuario::merge(int idx){
 void ArbolUsuario::EliminarB(int k) 
 { 
     if (!root) { 
-        cout <<"No hay administradores registrados"<<endl; 
+        cout <<"No hay usuarios registrados"<<endl; 
         return; 
     } 
   

@@ -586,3 +586,13 @@ Codigo de Conexion: 96352 Pais destino: 20 Ciudad Destino: 678 Tiempo: 8
 ------------------Registro Conexiones------------------
 ------------------Registro Conexiones------------------
 ------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
+------------------Registro Conexiones------------------
